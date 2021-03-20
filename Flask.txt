@@ -1,0 +1,48 @@
+#installing Flask, cmd
+pip install virtualenv
+#go to desired directory using mkdir and cd: C:\Users\hp\Desktop\home\flaskproj>
+#new virtual env
+virtualenv venv
+
+#activate env
+venv\scripts\activate
+pip install Flask
+
+#testing installation, python
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+   return 'Hello World’
+
+if __name__ == '__main__':
+   app.run()
+
+#adding dynamic message
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/hello/<name>')
+def hello_name(name):
+   return 'Hello %s!' % name
+
+if __name__ == '__main__':
+   app.run(debug = True)
+
+#using other data types
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/blog/<int:postID>')
+def show_blog(postID):
+   return 'Blog Number %d' % postID
+
+@app.route('/rev/<float:revNo>')
+def revision(revNo):
+   return 'Revision Number %f' % revNo
+
+if __name__ == '__main__':
+   app.run()
+
+#The URL rules of Flask are based on Werkzeug’s routing module. This ensures that the URLs formed are unique and based on precedents laid down by Apache.
